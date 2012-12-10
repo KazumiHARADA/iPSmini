@@ -10,6 +10,10 @@
 		73507FC9166EDE59003A0CFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73507FC8166EDE59003A0CFA /* Foundation.framework */; };
 		73507FCC166EDE59003A0CFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 73507FCB166EDE59003A0CFA /* main.m */; };
 		73507FD0166EDE59003A0CFA /* iPSmini.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 73507FCF166EDE59003A0CFA /* iPSmini.1 */; };
+		73507FDC166EDE8C003A0CFA /* IPS.m in Sources */ = {isa = PBXBuildFile; fileRef = 73507FDB166EDE8C003A0CFA /* IPS.m */; };
+		73507FFC166F2E00003A0CFA /* Subr.m in Sources */ = {isa = PBXBuildFile; fileRef = 73507FFB166F2E00003A0CFA /* Subr.m */; };
+		73507FFF166F2EEE003A0CFA /* Load.m in Sources */ = {isa = PBXBuildFile; fileRef = 73507FFE166F2EEE003A0CFA /* Load.m */; };
+		73B4F36A1671B1D200E69AAC /* NSMutableArray+iPSAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B4F3691671B1D200E69AAC /* NSMutableArray+iPSAddition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +35,15 @@
 		73507FCB166EDE59003A0CFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		73507FCE166EDE59003A0CFA /* iPSmini-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iPSmini-Prefix.pch"; sourceTree = "<group>"; };
 		73507FCF166EDE59003A0CFA /* iPSmini.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = iPSmini.1; sourceTree = "<group>"; };
+		73507FDA166EDE8C003A0CFA /* IPS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPS.h; sourceTree = "<group>"; };
+		73507FDB166EDE8C003A0CFA /* IPS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPS.m; sourceTree = "<group>"; };
+		73507FFA166F2E00003A0CFA /* Subr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subr.h; sourceTree = "<group>"; };
+		73507FFB166F2E00003A0CFA /* Subr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Subr.m; sourceTree = "<group>"; };
+		73507FFD166F2EEE003A0CFA /* Load.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Load.h; sourceTree = "<group>"; };
+		73507FFE166F2EEE003A0CFA /* Load.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Load.m; sourceTree = "<group>"; };
+		739843EF1670954500394A1C /* init.ips */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.ips; sourceTree = "<group>"; };
+		73B4F3681671B1D200E69AAC /* NSMutableArray+iPSAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+iPSAddition.h"; sourceTree = "<group>"; };
+		73B4F3691671B1D200E69AAC /* NSMutableArray+iPSAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+iPSAddition.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +87,15 @@
 			isa = PBXGroup;
 			children = (
 				73507FCB166EDE59003A0CFA /* main.m */,
+				73507FFD166F2EEE003A0CFA /* Load.h */,
+				73507FFE166F2EEE003A0CFA /* Load.m */,
+				73507FDA166EDE8C003A0CFA /* IPS.h */,
+				73507FDB166EDE8C003A0CFA /* IPS.m */,
+				73507FFA166F2E00003A0CFA /* Subr.h */,
+				73507FFB166F2E00003A0CFA /* Subr.m */,
+				739843EF1670954500394A1C /* init.ips */,
+				73B4F3681671B1D200E69AAC /* NSMutableArray+iPSAddition.h */,
+				73B4F3691671B1D200E69AAC /* NSMutableArray+iPSAddition.m */,
 				73507FCF166EDE59003A0CFA /* iPSmini.1 */,
 				73507FCD166EDE59003A0CFA /* Supporting Files */,
 			);
@@ -140,6 +162,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				73507FCC166EDE59003A0CFA /* main.m in Sources */,
+				73507FDC166EDE8C003A0CFA /* IPS.m in Sources */,
+				73507FFC166F2E00003A0CFA /* Subr.m in Sources */,
+				73507FFF166F2EEE003A0CFA /* Load.m in Sources */,
+				73B4F36A1671B1D200E69AAC /* NSMutableArray+iPSAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +262,7 @@
 				73507FD5166EDE59003A0CFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

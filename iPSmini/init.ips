@@ -1,0 +1,132 @@
+;; -*- mode: scheme; coding: utf-8 -*-
+
+(define *version* "iPSmini 0.2.2")
+
+;;map
+
+(define map
+  (lambda (f lst)
+    (cond
+     ((null? lst) (quote ()))
+     (else (cons (f (car lst)) (map f (cdr lst)))))))
+     
+(define memq
+ (lambda (a lst)
+  (cond
+   ((null? lst) #f)
+   ((eq? a (car lst)) lst)
+   (else (memq a (cdr lst))))))
+       
+;;fibo
+
+(define fibo
+  (lambda (n)
+    (loop ((p1 0) (p2 1) (n n))
+     (cond
+      ((= n 0) p1)
+       (else (recur p2 (+ p1 p2) (- n 1)))))))
+
+;;not
+
+(define not
+  (lambda (x)
+    (cond
+     ((eq? x #t) #f)
+     (else #t))))
+     
+;;list
+
+(define list?
+  (lambda (x)
+    (not (atom? x))))
+    
+;;zero?
+
+(define zero?
+  (lambda (n)
+    (cond
+     ((= n 0) #t)
+     (else #f))))
+
+;;even?
+
+(define even?
+  (lambda (n)
+    (cond
+     ((= (mod n 2) 0) #t)
+     (else #f))))
+
+;;odd?
+
+(define odd?
+  (lambda (n)
+    (not (even? n))))
+
+;;positive?
+
+(define positive?
+  (lambda (n)
+   (> n 0)))
+   
+
+;;negative?
+
+(define negative?
+  (lambda (n)
+    (< n 0)))
+
+;;car cdr
+
+(define caar
+  (lambda (x)
+    (car (car x))))
+    
+(define caaar
+  (lambda (x)
+    (car (car (car x)))))
+    
+(define caaaar
+  (lambda (x)
+    (car (car (car (car x))))))
+    
+(define cadr
+  (lambda (x)
+    (car (cdr x))))
+    
+(define caddr
+  (lambda (x)
+    (car (cdr (cdr (x))))))
+    
+;;filter
+
+(define filter
+  (lambda (pred lst)
+    (cond
+     ((null? lst) (quote ()))
+     ((eq? (pred (car lst)) #t)
+      (cons (car lst) (filter pred (cdr lst))))
+     (else (filter pred (cdr lst))))))
+     
+;;list
+
+(define list
+  (lambda b
+    b))
+
+;; power
+
+(define power
+  (lambda (b e)
+    (loop ((b b) (e e) (ret 1))
+     (cond ((= 0 e) ret)
+	  ((even? e) (recur (* b b) (/ e 2) ret))
+	  (else (recur b (- e 1) (* b ret)))))))
+      
+(define z
+ (lambda (n)
+  (loop ((n n))
+   (cond
+    ((= n 0) 0)
+    (else (recur (- n 1)))))))
+       
+
