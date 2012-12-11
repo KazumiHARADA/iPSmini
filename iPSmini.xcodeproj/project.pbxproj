@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		732329041676C3CE00C76DCF /* Bignum.m in Sources */ = {isa = PBXBuildFile; fileRef = 732329031676C3CE00C76DCF /* Bignum.m */; };
 		73507FC9166EDE59003A0CFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73507FC8166EDE59003A0CFA /* Foundation.framework */; };
 		73507FCC166EDE59003A0CFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 73507FCB166EDE59003A0CFA /* main.m */; };
 		73507FD0166EDE59003A0CFA /* iPSmini.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 73507FCF166EDE59003A0CFA /* iPSmini.1 */; };
@@ -30,6 +31,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		732329021676C3CE00C76DCF /* Bignum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bignum.h; sourceTree = "<group>"; };
+		732329031676C3CE00C76DCF /* Bignum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bignum.m; sourceTree = "<group>"; };
 		73507FC4166EDE59003A0CFA /* iPSmini */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = iPSmini; sourceTree = BUILT_PRODUCTS_DIR; };
 		73507FC8166EDE59003A0CFA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		73507FCB166EDE59003A0CFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -94,6 +97,8 @@
 				73507FFA166F2E00003A0CFA /* Subr.h */,
 				73507FFB166F2E00003A0CFA /* Subr.m */,
 				739843EF1670954500394A1C /* init.ips */,
+				732329021676C3CE00C76DCF /* Bignum.h */,
+				732329031676C3CE00C76DCF /* Bignum.m */,
 				73B4F3681671B1D200E69AAC /* NSMutableArray+iPSAddition.h */,
 				73B4F3691671B1D200E69AAC /* NSMutableArray+iPSAddition.m */,
 				73507FCF166EDE59003A0CFA /* iPSmini.1 */,
@@ -166,6 +171,7 @@
 				73507FFC166F2E00003A0CFA /* Subr.m in Sources */,
 				73507FFF166F2EEE003A0CFA /* Load.m in Sources */,
 				73B4F36A1671B1D200E69AAC /* NSMutableArray+iPSAddition.m in Sources */,
+				732329041676C3CE00C76DCF /* Bignum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
