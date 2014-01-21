@@ -13,6 +13,7 @@
     NSMutableArray *initial_value;
     NSMutableArray *global_table;
     NSMutableArray *local_table;
+    NSMutableArray *loop_table;
 }
 
 -(id) scan:(id)str;
@@ -31,5 +32,5 @@
 @property (strong, nonatomic)NSMutableArray *global_table;
 @property (strong, nonatomic)NSMutableArray *local_table;
 @property (strong, nonatomic)NSMutableArray *initial_value;
-
+@property (strong, nonatomic)NSMutableArray *loop_table;
 @end

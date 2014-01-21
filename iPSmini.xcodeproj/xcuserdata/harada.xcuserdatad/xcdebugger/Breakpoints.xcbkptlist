@@ -17,16 +17,42 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iPSmini/Subr.m"
-         timestampString = "376822648.937754"
+         filePath = "iPSmini/IPS.m"
+         timestampString = "382764489.980481"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "503"
-         endingLineNumber = "503"
-         landmarkName = "-range:"
+         startingLineNumber = "317"
+         endingLineNumber = "317"
+         landmarkName = "-loop::"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iPSmini/IPS.m"
+         timestampString = "382764489.980481"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "391"
+         endingLineNumber = "391"
+         landmarkName = "-recur::"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iPSmini/IPS.m"
+         timestampString = "382764489.980481"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "461"
+         endingLineNumber = "461"
+         landmarkName = "-defineForLoop::"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -34,25 +60,64 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "iPSmini/Subr.m"
-         timestampString = "376822648.937754"
+         timestampString = "382358916.220497"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "564"
-         endingLineNumber = "564"
-         landmarkName = "-sort:"
+         startingLineNumber = "885"
+         endingLineNumber = "885"
+         landmarkName = "-legiblePrint:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "iPSmini/Subr.m"
-         timestampString = "376822036.344686"
+         filePath = "iPSmini/IPS.m"
+         timestampString = "382775610.335333"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "130"
-         endingLineNumber = "130"
-         landmarkName = "-eq:"
+         startingLineNumber = "692"
+         endingLineNumber = "692"
+         landmarkName = "isStringSubr()"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iPSmini/IPS.m"
+         timestampString = "382764954.093307"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "510"
+         endingLineNumber = "510"
+         landmarkName = "-applyClosure:::"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iPSmini/IPS.m"
+         timestampString = "382765112.609817"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "521"
+         endingLineNumber = "521"
+         landmarkName = "-applyClosureAux:::::"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "iPSmini/IPS.m"
+         timestampString = "382775225.223113"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
+         landmarkName = "-evlet::"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

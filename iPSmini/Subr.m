@@ -7,6 +7,7 @@
 //
 
 #import "Subr.h"
+#import "Bignum.h"
 #import "NSMutableArray+iPSAddition.h"
 
 @implementation Subr
@@ -18,6 +19,7 @@ extern id cdr(id e);
 extern int isSubr(id e);
 extern BOOL isString(id e);
 extern BOOL isNumber(id e);
+extern BOOL isInternalChar(id e);
 
 -(id) applySubr:(id)name :(id)vals
 {
@@ -27,6 +29,10 @@ extern BOOL isNumber(id e);
             return [self applyBasicSubr:name :vals :self.s_env];
         case 2:
             return [self applyAddSubr:name :vals :self.s_env];
+        case 3:
+            return [self applyStringSubr:name :vals :self.s_env];
+        case 4:
+            return [self applyCharSubr:name :vals :self.s_env];
         default:
             [IPS error:name :1];
     }
@@ -46,7 +52,7 @@ extern BOOL isNumber(id e);
     } else if ([name isEqual:@"="]) {
         return [self numEq:vals];
     } else if ([name isEqual:@"car"]) {
-        return car(car(vals));
+        return [self subrCar:vals];
     } else if ([name isEqual:@"cdr"]) {
         return cdr(car(vals));
     } else if ([name isEqual:@"null?"]) {
@@ -65,6 +71,8 @@ extern BOOL isNumber(id e);
         return [self less:vals];
     } else if ([name isEqual:@"apply"]){
         return [self subrApply:vals :table];
+    } else if ([name isEqual:@"number?"]){
+        return [self numberQ:vals];
     }
     return FALSE;
 }
@@ -94,6 +102,91 @@ extern BOOL isNumber(id e);
     }
     return FALSE;
 }
+
+-(id) applyCharSubr:(id)name :(id)vals :(id)table
+{
+    if ([name isEqual:@"char?"]) {
+        return [self charQ:vals];
+    } else if ([name isEqual:@"char=?"]) {
+        return [self charEqual:vals];
+    } else if ([name isEqual:@"char>?"]) {
+        return [self charGreater:vals];
+    } else if ([name isEqual:@"char<?"]) {
+        return [self charLess:vals];
+    } else if ([name isEqual:@"char->integer"]) {
+        return [self charInteger:vals];
+    } else if ([name isEqual:@"integer->char"]) {
+        return [self integerChar:vals];
+    }
+    return FALSE;
+}
+
+-(id) applyStringSubr:(id)name :(id)vals :(id)table
+{
+    if ([name isEqual:@"string?"]) {
+        return [self stringQ:vals];
+    } else if ([name isEqual:@"make-string"]) {
+        return [self makeString:vals];
+    } else if ([name isEqual:@"string-length"]) {
+        return [self stringLength:vals];
+    } else if ([name isEqual:@"string-ref"]) {
+        return [self stringRef:vals];
+    } else if ([name isEqual:@"substring"]) {
+        return [self subString:vals];
+    } else if ([name isEqual:@"string-append"]) {
+        return [self stringAppend:vals];
+    } else if ([name isEqual:@"string=?"]) {
+        return [self stringEqual:vals];
+    } else if ([name isEqual:@"string>?"]) {
+        return [self stringGreater:vals];
+    } else if ([name isEqual:@"string<?"]) {
+        return [self stringLess:vals];
+    }  else if ([name isEqual:@"print"]) {
+        return [self subrPrint:vals];
+    }
+    return FALSE;
+}
+
+
+-(id) subrCar:(id)e
+{
+    [Subr checkArguments:e :2 :@"!="];
+    
+    return car(car(e));
+}
+
+-(id) numberQ:(id)e
+{
+    [Subr checkArguments:e :2 :@"!="];
+    
+    if (isNumber(e[0])) {
+        return @"#t";
+    } else {
+        return @"#f";
+    }
+    
+}
+
+-(id) subrPrint:(id)vals
+{
+    NSFileHandle *output = [self currentOutputPort:vals];
+    NSMutableString *result = [NSMutableString stringWithCapacity:0];
+    int tmp_pos = 0;
+    while ([vals[tmp_pos] isEqual:[NSNull null]] != TRUE) {
+        [result appendString:[self legiblePrint:vals[tmp_pos]]];
+        tmp_pos++;
+    }
+    [result appendString:@"\n"];
+    NSData *data = [result dataUsingEncoding:NSUTF8StringEncoding];
+    [output writeData:data];
+    return @"#<undef>";
+}
+
+-(id) currentOutputPort:(id)vals
+{
+    return [NSFileHandle fileHandleWithStandardOutput];
+}
+
 
 -(id) null:(id)e
 {
@@ -131,7 +224,9 @@ extern BOOL isNumber(id e);
 {
     [Subr checkArguments:e :3 :@"!="];
     
-    if(e[0] == e[1]){
+    //NSLog(@"%@",e);
+    
+    if([e[0] isEqual:e[1]]){
         return @"#t";
     } else {
         return @"#f";
@@ -142,37 +237,29 @@ extern BOOL isNumber(id e);
 -(id) subrDiv:(id)vals
 {
     [Subr checkArguments:vals :3 :@"!="];
-
-    NSMutableArray *d_list = allDecimal(vals);
     
+    NSMutableArray *list = allBignum(vals);
+    Bignum *ans = [Bignum divBignum:list];
+    NSString *result = [ans getString];
     
+    [ans releaseBignum];
     
-    return formatNum(@"#;0;-#",subrDivAux(d_list[0],d_list[1]));
-    
-}
-
-NSDecimalNumber *subrDivAux(NSDecimalNumber *num1, NSDecimalNumber *num2)
-{
-    NSDecimalNumberHandler* roundingBehavior =    [NSDecimalNumberHandler
-                                                   decimalNumberHandlerWithRoundingMode:NSRoundDown
-                                                   scale:0
-                                                   raiseOnExactness:NO
-                                                   raiseOnOverflow:NO
-                                                   raiseOnUnderflow:NO
-                                                   raiseOnDivideByZero:NO];
-    
-    return [num1 decimalNumberByDividingBy:num2 withBehavior:roundingBehavior];
+    return result;
 }
 
 -(id) subrMod:(id)vals
 {
     [Subr checkArguments:vals :3 :@"!="];
-
-    id div = [NSDecimalNumber decimalNumberWithString:[self subrDiv:vals]];
-    NSMutableArray *d_list = allDecimal(vals);
     
-    id ans = subNum(d_list[0],mulNum(div, d_list[1]));
-    return formatNum(@"#;0;-#",ans);
+    NSMutableArray *list = allBignum(vals);
+    Bignum *ans = [Bignum modBignum:list];
+    NSString *result = [ans getString];
+    
+    [ans releaseBignum];
+    
+    return result;
+    
+    
 }
 -(id) greater:(id)vals
 {
@@ -223,43 +310,14 @@ NSDecimalNumber *subrDivAux(NSDecimalNumber *num1, NSDecimalNumber *num2)
     return [super apply:fun :new_vals :table];
 }
 
-
-NSDecimalNumber * addNum(NSDecimalNumber *ans,NSDecimalNumber *num)
+NSMutableArray *allBignum(NSMutableArray *vals)
 {
-
-    return [ans decimalNumberByAdding:num];
-}
-
-NSDecimalNumber * subNum(NSDecimalNumber *ans,NSDecimalNumber *num)
-{
-    return [ans decimalNumberBySubtracting:num];
-}
-
-NSDecimalNumber * mulNum(NSDecimalNumber *ans,NSDecimalNumber *num)
-{
-    return [ans decimalNumberByMultiplyingBy:num];
-}
-
-NSDecimalNumber * divNum(NSDecimalNumber *ans,NSDecimalNumber *num)
-{
-    return [ans decimalNumberByDividingBy:num];
-}
-
-NSString * formatNum(NSString *format, NSDecimalNumber *ans)
-{
-    id formatter = [[NSNumberFormatter alloc] init];
-    [formatter setPositiveFormat:format];
-    return [formatter stringFromNumber:ans];
-}
-
-NSMutableArray *allDecimal(NSMutableArray *vals)
-{
-    NSMutableArray *decimal_list = [NSMutableArray initCell];
+    NSMutableArray *big_list = [NSMutableArray initCell];
     
     [vals forEachValues:^void(int pos) {
-        [decimal_list add:[NSDecimalNumber decimalNumberWithString:vals[pos]]];
+        [big_list add:[Bignum bigNumberWithString:vals[pos]]];
     }];
-    return decimal_list;
+    return big_list;
 }
 
 BOOL isTheString(NSString *str, NSString *search)
@@ -297,14 +355,54 @@ BOOL isInexact(id vals)
     return FALSE;
 }
 
-NSDecimalNumber *nume(NSString *exp)
+Bignum *nume(NSString *exp)
+{
+    NSString *result = [exp stringByReplacingOccurrencesOfString:@"/" withString:@" / "];
+    NSArray *result2 = [result componentsSeparatedByString:@" "];
+    return [Bignum bigNumberWithString:result2[0]];
+}
+
+Bignum *deno(NSString *exp)
+{
+    NSString *result = [exp stringByReplacingOccurrencesOfString:@"/" withString:@" / "];
+    NSArray *result2 = [result componentsSeparatedByString:@" "];
+    if ([result2 count] == 1){
+        return [Bignum bigNumberWithString:@"1"];
+    }
+    return [Bignum bigNumberWithString:result2[2]];
+}
+
+NSString *makeAns(NSMutableArray *ans)
+{
+    NSString *result;
+    
+    if ([ans[1] isEqualBignum:@"1"]){
+        result = [[NSString alloc] initWithFormat:@"%@",[ans[0] getString]];
+    } else {
+        result = [[NSString alloc] initWithFormat:@"%@/%@",[ans[0] getString],[ans[1] getString]];
+    }
+    
+    [ans[1] releaseBignum];
+    [ans[0] releaseBignum];
+    return result;
+}
+
+NSString * formatNum(NSString *format, NSDecimalNumber *ans)
+{
+    id formatter = [[NSNumberFormatter alloc] init];
+    [formatter setPositiveFormat:format];
+    return [formatter stringFromNumber:ans];
+}
+
+
+NSDecimalNumber *nume_d(NSString *exp)
 {
     NSString *result = [exp stringByReplacingOccurrencesOfString:@"/" withString:@" / "];
     NSArray *result2 = [result componentsSeparatedByString:@" "];
     return [NSDecimalNumber decimalNumberWithString:result2[0]];
 }
 
-NSDecimalNumber *deno(NSString *exp)
+NSDecimalNumber *deno_d(NSString *exp)
 {
     NSString *result = [exp stringByReplacingOccurrencesOfString:@"/" withString:@" / "];
     NSArray *result2 = [result componentsSeparatedByString:@" "];
@@ -314,59 +412,13 @@ NSDecimalNumber *deno(NSString *exp)
     return [NSDecimalNumber decimalNumberWithString:result2[2]];
 }
 
-NSDecimalNumber *gcdAux(NSDecimalNumber *num1 ,NSDecimalNumber *num2)
-{
-    if ([formatNum(@"#;0;-#", num2) intValue] == 0){
-        return num1;
-    }
-    return gcdAux(num2, subNum(num1,mulNum(subrDivAux(num1, num2),num2)));
-}
-
-NSDecimalNumber *lcmAux(NSDecimalNumber *num1 ,NSDecimalNumber *num2)
-{
-    NSString *str = [[NSString alloc] initWithFormat:@"%d",abs([formatNum(@"#;0;-#",mulNum(num1, num2)) intValue])];
-    NSDecimalNumber *num3 = [NSDecimalNumber decimalNumberWithString:str];
-    
-    return subrDivAux(num3,gcdAux(num1, num2));
-}
-
-NSMutableArray* reducation(NSDecimalNumber *num1,NSDecimalNumber *num2)
-{
-    NSDecimalNumber *gcd = gcdAux(num1,num2);
-    NSDecimalNumber *new_ans1 = divNum(num1, gcd);
-    NSDecimalNumber *new_ans2 = divNum(num2, gcd);
-    NSMutableArray *arr_ans = [NSMutableArray initCell];
-    
-    return [arr_ans addAllR:new_ans1,new_ans2,nil];
-}
-
-NSMutableArray* dividing(NSString *operator,NSMutableArray *vals,id ans)
-{
-    if ([ans isKindOfClass:[NSDecimalNumber class]]){
-        return reducation(ans,vals[0]);
-    } else {
-        NSDecimalNumber *nume = mulNum(ans[0],[NSDecimalNumber decimalNumberWithString:@"1"]);
-        NSDecimalNumber *deno = mulNum(ans[1],vals[0]);
-        return reducation(nume, deno);
-    }
-}
-
-NSString *makeAns(NSMutableArray *ans)
-{
-    if ([ans[1] isEqual:[NSDecimalNumber decimalNumberWithString:@"1"]]){
-        return [[NSString alloc] initWithFormat:@"%@",ans[0]];
-    } else {
-        return [[NSString alloc] initWithFormat:@"%@/%@",ans[0],ans[1]];
-    }
-}
-
 id inexact(id vals)
 {
     NSMutableArray *arr = [NSMutableArray initCell];
     
     [vals forEachValues:^void(int pos) {
         if (isTheString(vals[pos], @"/")) {
-            id ans = divNum(nume(vals[pos]),deno(vals[pos]));
+            id ans = [nume_d(vals[pos]) decimalNumberByDividingBy:deno_d(vals[pos])];
             NSString *ans_str = formatNum(@"#.##############################;0;-#.##############################", ans);
             [arr add:ans_str];
         } else {
@@ -375,6 +427,7 @@ id inexact(id vals)
     }];
     return arr;
 }
+
 
 NSMutableArray *changeFracType(NSString *val)
 {
@@ -403,61 +456,43 @@ NSMutableArray *allFrac(NSMutableArray *vals)
     }
 }
 
-NSString * calcFix(NSString *operator,NSMutableArray *vals,id ans)
+NSString * calcFix(NSString *operator,NSMutableArray *vals)
 {
-    if ([vals[0] isEqual:[NSNull null]]) {
-        if ([ans isKindOfClass:[NSMutableArray class]]){
-            return makeAns(ans);
-        } else {
-            return formatNum(@"#;0;-#", ans);
-        }
-    }
+    id ans;
     
     if ([operator isEqualToString:@"+"]) {
-        return calcFix(operator, cdr(vals), addNum(ans, car(vals)));
+        ans = [Bignum addBignumFromArray:vals];
     } else if ([operator isEqualToString:@"-"]) {
-        return calcFix(operator, cdr(vals), subNum(ans, car(vals)));
+        ans = [Bignum subBignumFromArray:vals];
     } else if ([operator isEqualToString:@"*"]) {
-        return calcFix(operator, cdr(vals), mulNum(ans, car(vals)));
+        ans = [Bignum mulBignumFromArray:vals];
     } else if ([operator isEqualToString:@"/"]) {
-        return calcFix(operator, cdr(vals), dividing(operator, vals, ans));
+        ans = [Bignum divBignumFromArray:vals];
     }
-    return @"#f";
+    
+    if ([ans isKindOfClass:[NSMutableArray class]]){
+        return makeAns(ans);
+    } else {
+        NSString *str = [ans getString];
+        [ans releaseBignum];
+        return str;
+    }
 }
 
-NSMutableArray *calcFracAux1(NSString *operator,NSDecimalNumber *nume1,NSDecimalNumber *deno1,NSDecimalNumber *nume2,NSDecimalNumber *deno2,NSDecimalNumber *lcm_num)
+NSString *calcFrac(NSString *operator,NSMutableArray *vals)
 {
-    NSDecimalNumber *new_nume1 = mulNum(nume1,subrDivAux(lcm_num,deno1));
-    NSDecimalNumber *new_nume2 = mulNum(nume2,subrDivAux(lcm_num,deno2));
+    id ans;
     
     if ([operator isEqualToString:@"+"]) {
-        return reducation(addNum(new_nume1,new_nume2),lcm_num);
-    } else {
-        return reducation(subNum(new_nume1,new_nume2),lcm_num);
+        ans = [Bignum addFracBignumFromArray:vals];
+    } else if ([operator isEqualToString:@"-"]) {
+        ans = [Bignum subFracBignumFromArray:vals];
+    } else if ([operator isEqualToString:@"*"]) {
+        ans = [Bignum mulFracBignumFromArray:vals];
+    } else if ([operator isEqualToString:@"/"]) {
+        ans = [Bignum divFracBignumFromArray:vals];
     }
-}
-NSMutableArray *calcFracAux2(NSString *operator,NSDecimalNumber *nume1,NSDecimalNumber *deno1,NSDecimalNumber *nume2,NSDecimalNumber *deno2)
-{
-    if ([operator isEqualToString:@"*"]) {
-        return reducation(mulNum(nume1,nume2),mulNum(deno1,deno2));
-    } else {
-        return reducation(mulNum(nume1,deno2),mulNum(deno1,nume2));
-    }
-}
-
-NSString *calcFrac(NSString *operator,id vals,NSMutableArray *ans)
-{
-    if ([vals[0] isEqual:[NSNull null]]) {
-        return makeAns(ans);
-    }
-    if ([operator isEqual:@"+"]||[operator isEqual:@"-"]){
-        NSMutableArray *result = calcFracAux1(operator,ans[0],ans[1],vals[0][0],vals[0][1],lcmAux(ans[1],vals[0][1]));
-        return calcFrac(operator,cdr(vals),result);
-    } else if ([operator isEqual:@"*"]||[operator isEqual:@"/"]) {
-        NSMutableArray *result = calcFracAux2(operator,ans[0],ans[1],vals[0][0],vals[0][1]);
-        return calcFrac(operator,cdr(vals),result);
-    }
-    return @"#f";
+    return makeAns(ans);
 }
 
 
@@ -465,11 +500,21 @@ NSString * calcExact(NSString *name,NSMutableArray *vals)
 {
     if (isFracNum(vals)) {
         NSMutableArray *frac_list = allFrac(vals);
-        return calcFrac(name,cdr(frac_list),car(frac_list));
+        return calcFrac(name,frac_list);
     } else {
-        NSMutableArray *decimal_list = allDecimal(vals);
-        return calcFix(name,cdr(decimal_list),car(decimal_list));
+        NSMutableArray *big_list = allBignum(vals);
+        return calcFix(name,big_list);
     }
+}
+
+NSMutableArray *allDecimal(NSMutableArray *vals)
+{
+    NSMutableArray *decimal_list = [NSMutableArray initCell];
+    
+    [vals forEachValues:^void(int pos) {
+        [decimal_list add:[NSDecimalNumber decimalNumberWithString:vals[pos]]];
+    }];
+    return decimal_list;
 }
 
 NSString * calcInexact(NSString *operator, NSMutableArray *vals,NSDecimalNumber *ans)
@@ -479,13 +524,13 @@ NSString * calcInexact(NSString *operator, NSMutableArray *vals,NSDecimalNumber 
     }
     
     if ([operator isEqual:@"+"]) {
-        return calcInexact(operator,cdr(vals),addNum(ans, car(vals)));
+        return calcInexact(operator,cdr(vals),[ans decimalNumberByAdding:car(vals)]);
     } else if ([operator isEqual:@"-"]) {
-        return calcInexact(operator,cdr(vals),subNum(ans, car(vals)));
+        return calcInexact(operator,cdr(vals),[ans decimalNumberBySubtracting:car(vals)]);
     } else if ([operator isEqual:@"*"]) {
-        return calcInexact(operator,cdr(vals),mulNum(ans, car(vals)));
+        return calcInexact(operator,cdr(vals),[ans decimalNumberByMultiplyingBy:car(vals)]);
     } else if ([operator isEqual:@"/"]) {
-        return calcInexact(operator,cdr(vals),divNum(ans, car(vals)));
+        return calcInexact(operator,cdr(vals),[ans decimalNumberByDividingBy:car(vals)]);
     }
     return @"#f";
 }
@@ -547,18 +592,26 @@ NSString * calcInexact(NSString *operator, NSMutableArray *vals,NSDecimalNumber 
 {
     [Subr checkArguments:vals :3 :@"!="];
     
-    NSMutableArray *d_list = allDecimal(vals);
-    return formatNum(@"#;0;-#", gcdAux(d_list[0], d_list[1]));
+    NSMutableArray *list = allBignum(vals);
+    Bignum *ans = [Bignum gcdBignum:list];
+    NSString *result = [ans getString];
     
+    [ans releaseBignum];
+    
+    return result;
 }
 
 -(id) lcm:(id)vals
 {
     [Subr checkArguments:vals :3 :@"!="];
     
-    NSMutableArray *d_list = allDecimal(vals);
-    return formatNum(@"#;0;-#", lcmAux(d_list[0], d_list[1]));
-
+    NSMutableArray *list = allBignum(vals);
+    Bignum *ans = [Bignum lcmBignum:list];
+    NSString *result = [ans getString];
+    
+    [ans releaseBignum];
+    
+    return result;
 }
 
 -(id) sort:(id)vals
@@ -588,14 +641,219 @@ NSComparisonResult compareFloat(id value1, id value2, void *context)
 {
     [Subr checkArguments:vals :2 :@"!="];
     
-    return [[NSString alloc] initWithFormat:@"%@",nume(vals[0])];
+    return [[NSString alloc] initWithFormat:@"%@",nume_d(vals[0])];
 }
 
 -(id) denominator:(id)vals
 {
     [Subr checkArguments:vals :2 :@"!="];
     
-    return [[NSString alloc] initWithFormat:@"%@",deno(vals[0])];
+    return [[NSString alloc] initWithFormat:@"%@",deno_d(vals[0])];
+}
+
+-(id) charQ:(id)vals
+{
+    NSRange range;
+    NSString *expression = @"^#\\\\.$";
+
+    [Subr checkArguments:vals :2 :@"!="];
+    
+    range = [vals[0] rangeOfString:expression options:NSRegularExpressionSearch];
+    
+    if (range.location != NSNotFound) {
+        return @"#t";
+    } else {
+        return @"#f";
+    }
+}
+
+-(id)charEqual:(id)vals
+{
+    [Subr checkArguments:vals :3 :@"!="];
+    
+    const char *c1 = [vals[0] UTF8String];
+    const char *c2 = [vals[1] UTF8String];
+    
+    if (c1[2] == c2[2]) {
+        return @"#t";
+    } else {
+        return @"#f";
+    }
+    
+}
+
+-(id) charGreater:(id)vals
+{
+    [Subr checkArguments:vals :3 :@"!="];
+    
+    const char *c1 = [vals[0] UTF8String];
+    const char *c2 = [vals[1] UTF8String];
+    
+    if (c1[2] > c2[2]) {
+        return @"#t";
+    } else {
+        return @"#f";
+    }
+}
+
+-(id) charLess:(id)vals
+{
+    [Subr checkArguments:vals :3 :@"!="];
+    const char *c1 = [vals[0] UTF8String];
+    const char *c2 = [vals[1] UTF8String];
+    
+    if (c1[2] < c2[2]) {
+        return @"#t";
+    } else {
+        return @"#f";
+    }
+    
+}
+
+-(id) charInteger:(id)vals
+{
+    [Subr checkArguments:vals :2 :@"!="];
+    
+    const char *c1 = [vals[0] UTF8String];
+    
+    return [[NSString alloc] initWithFormat:@"%d",c1[2]];
+}
+
+-(id) integerChar:(id)vals
+{
+    [Subr checkArguments:vals :2 :@"!="];
+    return [[NSString alloc] initWithFormat:@"#\\%c",[vals[0] intValue]];
+}
+
+-(id) stringQ:(id)vals
+{
+    [Subr checkArguments:vals :2 :@"!="];
+    
+    NSRange range;
+    NSString *expression = @"^\".*\"$";
+    
+    range = [vals[0] rangeOfString:expression options:NSRegularExpressionSearch];
+    
+    if (range.location != NSNotFound) {
+        return @"#t";
+    } else {
+        return @"#f";
+    }
+}
+
+-(id) makeString:(id)vals
+{
+    NSUInteger vals_count = [vals count];
+    char elem;
+    if (!((vals_count != 2) || (vals_count != 3))) {
+        [IPS error:@"#f" :2];
+    }
+    
+    int count = [vals[0] intValue];
+    if (vals_count == 2) {
+        elem = ' ';
+    } else {
+        elem = [vals[1] UTF8String][2];
+    }
+    NSMutableString *result = [NSMutableString stringWithCapacity:0];
+    [result appendString:@"\""];
+    while (count != 0) {
+        [result appendFormat:@"%c",elem];
+        count--;
+    }
+    [result appendString:@"\""];
+    return result;
+}
+
+-(id) stringLength:(id)vals
+{
+    [Subr checkArguments:vals :2 :@"!="];
+    
+    return [[NSString alloc] initWithFormat:@"%ld",([vals[0] length] -2)];
+}
+
+-(id) stringRef:(id)vals
+{
+    [Subr checkArguments:vals :3 :@"!="];
+    
+    int loc = [vals[1] intValue];
+    NSUInteger len = ([vals[0] length] -2);
+    
+    if (loc > len) {
+        [IPS error:@"" :7];
+    }
+    
+    NSString *tidied = [vals[0] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    NSString *ref = [tidied substringWithRange:NSMakeRange(loc,1)];
+    NSString *result = [[NSString alloc] initWithFormat:@"#\\%@",ref];
+    return result;
+}
+
+-(id) stringAppend:(id)vals
+{
+    int tmp_pos = 0;
+    NSMutableString *append = [NSMutableString stringWithCapacity:0];
+    while (tmp_pos < ([vals count] -1)) {
+        [append appendString:vals[tmp_pos]];
+        tmp_pos++;
+    }
+    NSString *tidied = [append stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    NSString *result = [[NSString alloc] initWithFormat:@"\"%@\"",tidied];
+    return result;
+}
+
+-(id) subString:(id)vals
+{
+    [Subr checkArguments:vals :4 :@"!="];
+    
+    NSUInteger length = ([vals[0] length] -2);
+    int start = [vals[1] intValue];
+    int end = [vals[2] intValue];
+    
+    if (start > length) {
+        [IPS error:@"start " :7];
+    } else if (end > length) {
+        [IPS error:@"end " :7];
+    } else if (start > end) {
+        [IPS error:@"#f" :11];//fix me
+    } else {
+        NSString *tidied = [vals[0] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        NSString *str = [tidied substringWithRange:NSMakeRange([vals[1] intValue], ([vals[2] intValue] - [vals[1] intValue]))];
+        return [[NSString alloc] initWithFormat:@"\"%@\"",str];
+    }
+    return @"#f";
+}
+
+-(id) stringEqual:(id)vals
+{
+    [Subr checkArguments:vals :3 :@"!="];
+    
+    if ([vals[0] compare:vals[1]] == NSOrderedSame) {
+        return @"#t";
+    } else {
+        return @"#f";
+    }
+}
+
+-(id) stringGreater:(id)vals
+{
+    [Subr checkArguments:vals :3 :@"!="];
+    if ([vals[0] compare:vals[1]] == NSOrderedDescending) {
+        return @"#t";
+    } else {
+        return @"#f";
+    }
+}
+
+-(id) stringLess:(id)vals
+{
+    [Subr checkArguments:vals :3 :@"!="];
+    
+    if ([vals[0] compare:vals[1]] == NSOrderedAscending) {
+        return @"#t";
+    } else {
+        return @"#f";
+    }
 }
 
 -(id) initWithTable:(id)table
@@ -624,4 +882,68 @@ NSComparisonResult compareFloat(id value1, id value2, void *context)
     }
 }
 
+-(NSString *) legiblePrint:(NSArray *)arr
+{
+    return [self legiblePrintAux:arr];
+}
+
+-(id) legiblePrintAux:(id)arr
+{
+    NSMutableString *ans = [NSMutableString stringWithCapacity:0];
+	int tmp_pos = 0;
+    if ([arr isKindOfClass:[NSString class]] == TRUE) {
+        return [self legiblePrintCore:arr];
+    } else if ([arr[0] isEqual:@"primitive"] == TRUE){
+        return [[NSString alloc] initWithFormat:@"#<subr %@>",super.initial_value];
+    } else if ([arr[0] isEqual:@"non-primitive"] == TRUE) {
+        return [[NSString alloc] initWithFormat:@"#<closure %@>",super.initial_value];
+    }
+    
+    [ans appendString:@"("];
+    
+	while (![arr[tmp_pos] isEqual:[NSNull null]]) {
+		if ([arr[tmp_pos] isKindOfClass:[NSArray class]] == TRUE) {
+			[ans appendString:@"("];
+			[ans appendFormat:@"%@ ",[self legiblePrintAux2:arr[tmp_pos]]];
+			[ans appendString:@") "];
+		} else {
+            [ans appendFormat:@"%@ ",[self legiblePrintCore:arr[tmp_pos]]];
+		}
+        tmp_pos++;
+	}
+    
+	[ans appendString:@")"];
+    return [[ans stringByReplacingOccurrencesOfString:@" )" withString:@")"] stringByReplacingOccurrencesOfString:@" )" withString:@")"];
+}
+
+-(NSMutableString *) legiblePrintAux2:(NSArray *)array
+{
+    
+	int tmp_pos = 0;
+    NSMutableString *ans = [NSMutableString stringWithCapacity:100];
+    
+	while (![array[tmp_pos] isEqual:[NSNull null]]) {
+		if ([array[tmp_pos] isKindOfClass:[NSArray class]] == TRUE) {
+			[ans appendString:@"("];
+			[ans appendFormat:@"%@ ",[self legiblePrintAux2:array[tmp_pos]]];
+            [ans appendString:@") "];
+        } else if([array[tmp_pos] isKindOfClass:[NSMapTable class]] == TRUE){
+            [ans appendString:@" "];
+        } else {
+            [ans appendFormat:@"%@ ",[self legiblePrintCore:array[tmp_pos]]];
+        }
+        tmp_pos++;
+    }
+    return ans;
+}
+
+-(NSString *) legiblePrintCore:(NSString *)str
+{
+    if (isString(str)) {
+        return [str stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    } else if (isInternalChar(str)) {
+        return [[str stringByReplacingOccurrencesOfString:@"#" withString:@""] stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+    }
+    return str;
+}
 @end

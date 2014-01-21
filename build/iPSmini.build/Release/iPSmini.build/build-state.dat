@@ -1,0 +1,226 @@
+TiPSmini
+v5
+r1
+cCheck dependencies
+cProcessPCH /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch.pth iPSmini/iPSmini-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/main.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/IPS.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/IPS.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Load.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Load.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Subr.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Subr.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/NSMutableArray+iPSAddition.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/NSMutableArray+iPSAddition.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Bignum.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Bignum.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cLd /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini normal x86_64
+cGenerateDSYMFile /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini.dSYM /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+c000000005093390000000000000000AA
+t1351825664
+s170
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c00000000507F72B900000000000C39B8
+t1350529721
+s801208
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c00000000507F72B900000000000015F7
+t1350529721
+s5623
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini
+t2
+s0
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini.dSYM
+t2
+s0
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Bignum.o
+t2
+s0
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/IPS.o
+t2
+s0
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Load.o
+t2
+s0
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/NSMutableArray+iPSAddition.o
+t2
+s0
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Subr.o
+t2
+s0
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/iPSmini.LinkFileList
+c0000000050CAE14600000000000002C3
+t1355473222
+s707
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Bignum.m
+c0000000050C9A57F00000000000009AC
+t1355392383
+s2476
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/IPS.m
+c0000000050CA97C30000000000006945
+t1355454403
+s26949
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Load.m
+c0000000050C3340D00000000000017D9
+t1354970125
+s6105
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/NSMutableArray+iPSAddition.m
+c0000000050C3FED3000000000000074F
+t1355022035
+s1871
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Subr.m
+c0000000050CA97AE0000000000003FE5
+t1355454382
+s16357
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/iPSmini-Prefix.pch
+c0000000050BDA9B8000000000000009B
+t1354607032
+s155
+i<Foundation/Foundation.h>
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/libgmp.a
+c0000000050C93F9500000000000BFC08
+t1355366293
+s785416
+
+N/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/main.m
+c0000000050C9A149000000000000050E
+t1355391305
+s1294
+
+N/var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch.pth
+t2
+s0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciese4a018c6187bb641^219229c6187bb641^---0#1#0#--18"Check dependencies36"91AE9F37-3826-42D4-AEDD-7FE64E22B9C2-
+
+CCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Bignum.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Bignum.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s377166025.077631
+e377166025.291601
+r1
+xCompileC
+xbuild/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Bignum.o
+x/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Bignum.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection67"Compile /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Bignum.mefff13c9187bb641^5da64ac9187bb641^---0#0#0#-19%DVTDocumentLocation2@75"file://localhost/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Bignum.m0000000000000000^3121"CompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Bignum.o iPSmini/Bignum.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/harada/Desktop/2012_ips/src/iPSmini    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-generated-files.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-own-target-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-all-target-headers.hmap -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-project-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources/x86_64 -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources -F/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release -include /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch -MMD -MT dependencies -MF /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Bignum.d --serialize-diagnostics /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Bignum.dia -c /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Bignum.m -o /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Bignum.o36"5658988D-B5B4-4D44-9347-A6E47C2495D9-
+
+CCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/IPS.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/IPS.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s377166024.495966
+e377166025.292612
+r1
+xCompileC
+xbuild/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/IPS.o
+x/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/IPS.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection64"Compile /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/IPS.mad177fc8187bb641^b0e84ac9187bb641^---0#0#0#-19%DVTDocumentLocation2@72"file://localhost/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/IPS.m0000000000000000^3103"CompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/IPS.o iPSmini/IPS.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/harada/Desktop/2012_ips/src/iPSmini    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-generated-files.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-own-target-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-all-target-headers.hmap -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-project-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources/x86_64 -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources -F/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release -include /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch -MMD -MT dependencies -MF /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/IPS.d --serialize-diagnostics /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/IPS.dia -c /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/IPS.m -o /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/IPS.o36"9EA83B0C-C9F4-4F37-9437-457DCA8D2FC5-
+
+CCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Load.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Load.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s377166024.496006
+e377166025.076385
+r1
+xCompileC
+xbuild/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Load.o
+x/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Load.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection65"Compile /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Load.m11187fc8187bb641^6d8e13c9187bb641^---0#0#0#-19%DVTDocumentLocation2@73"file://localhost/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Load.m0000000000000000^3109"CompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Load.o iPSmini/Load.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/harada/Desktop/2012_ips/src/iPSmini    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-generated-files.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-own-target-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-all-target-headers.hmap -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-project-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources/x86_64 -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources -F/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release -include /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch -MMD -MT dependencies -MF /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Load.d --serialize-diagnostics /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Load.dia -c /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Load.m -o /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Load.o36"D4488AC1-4A78-4E2B-A7F3-3E3B561BF982-
+
+CCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/NSMutableArray+iPSAddition.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/NSMutableArray+iPSAddition.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s377166025.008671
+e377166025.181538
+r1
+xCompileC
+xbuild/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/NSMutableArray+iPSAddition.o
+x/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/NSMutableArray+iPSAddition.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection87"Compile /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/NSMutableArray+iPSAddition.me19702c9187bb641^ce8c2ec9187bb641^---0#0#0#-19%DVTDocumentLocation2@95"file://localhost/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/NSMutableArray+iPSAddition.m0000000000000000^3241"CompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/NSMutableArray+iPSAddition.o iPSmini/NSMutableArray+iPSAddition.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/harada/Desktop/2012_ips/src/iPSmini    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-generated-files.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-own-target-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-all-target-headers.hmap -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-project-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources/x86_64 -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources -F/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release -include /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch -MMD -MT dependencies -MF /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/NSMutableArray+iPSAddition.d --serialize-diagnostics /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/NSMutableArray+iPSAddition.dia -c /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/NSMutableArray+iPSAddition.m -o /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/NSMutableArray+iPSAddition.o36"0351604B-A7D8-4F9F-82DD-EF7DDA327D16-
+
+CCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Subr.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Subr.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s377166024.495974
+e377166025.181939
+r1
+xCompileC
+xbuild/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Subr.o
+x/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Subr.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection65"Compile /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Subr.m261b7fc8187bb641^6f9e2ec9187bb641^---0#0#0#-19%DVTDocumentLocation2@73"file://localhost/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Subr.m0000000000000000^3109"CompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Subr.o iPSmini/Subr.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/harada/Desktop/2012_ips/src/iPSmini    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-generated-files.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-own-target-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-all-target-headers.hmap -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-project-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources/x86_64 -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources -F/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release -include /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch -MMD -MT dependencies -MF /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Subr.d --serialize-diagnostics /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Subr.dia -c /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/Subr.m -o /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/Subr.o36"3122BE08-F2D1-4A02-AA05-1111D0F80D84-
+
+CCompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/main.o /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s377166024.495961
+e377166025.007184
+r1
+xCompileC
+xbuild/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/main.o
+x/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/main.m
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection65"Compile /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/main.m05177fc8187bb641^807f02c9187bb641^---0#0#0#-19%DVTDocumentLocation2@73"file://localhost/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/main.m0000000000000000^3109"CompileC build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/main.o iPSmini/main.m normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/harada/Desktop/2012_ips/src/iPSmini    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-generated-files.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-own-target-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-all-target-headers.hmap -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-project-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources/x86_64 -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources -F/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release -include /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch -MMD -MT dependencies -MF /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/main.d --serialize-diagnostics /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/main.dia -c /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/main.m -o /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/main.o36"319D9037-0750-43C9-80E6-15A55D473660-
+
+CGenerateDSYMFile /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini.dSYM /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini
+s377166026.280259
+e377166026.338504
+r1
+xGenerateDSYMFile
+x/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini.dSYM
+x/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection80"Generating /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini.dSYM5ad447ca187bb641^19aa56ca187bb641^---0#0#0#-19%DVTDocumentLocation2@85"file://localhost/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini.dSYM000080cab6051042^354"GenerateDSYMFile build/Release/iPSmini.dSYM build/Release/iPSmini    cd /Users/harada/Desktop/2012_ips/src/iPSmini    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini -o /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini.dSYM36"EE1C0E11-B6DC-453D-A806-B9925AFC613E-
+
+CLd /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini normal x86_64
+s377166025.299378
+e377166026.273372
+r1
+xLd
+x/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini
+xnormal
+xx86_64
+old: warning: PIE disabled. Absolute addressing (perhaps -mdynamic-no-pic) not allowed in code signed PIE, but used in ___gmpn_divexact_1 from /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/libgmp.a(dive_1.o). To fix this warning, don't compile with -mdynamic-no-pic or link with -Wl,-no_pie
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Link /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini38bc4cc9187bb641^d2fc45ca187bb641^-295"ld: warning: PIE disabled. Absolute addressing (perhaps -mdynamic-no-pic) not allowed in code signed PIE, but used in ___gmpn_divexact_1 from /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/libgmp.a(dive_1.o). To fix this warning, don't compile with -mdynamic-no-pic or link with -Wl,-no_pie1(21%IDEActivityLogMessage2@281"PIE disabled. Absolute addressing (perhaps -mdynamic-no-pic) not allowed in code signed PIE, but used in ___gmpn_divexact_1 from /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/libgmp.a(dive_1.o). To fix this warning, don't compile with -mdynamic-no-pic or link with -Wl,-no_pie-377166026#0#295#-1#-23%DVTTextDocumentLocation3@-0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#32"Apple Mach-O Linker (ld) Warning--0#0#0#--817"Ld build/Release/iPSmini normal x86_64    cd /Users/harada/Desktop/2012_ips/src/iPSmini    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release -L/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini -F/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release -filelist /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/Objects-normal/x86_64/iPSmini.LinkFileList -mmacosx-version-min=10.8 -lgmp -fobjc-arc -fobjc-link-runtime -framework Foundation -lgmp -o /Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/iPSmini36"7B4D1AA3-380E-49D7-BA07-471973A6E2B9-
+
+CProcessPCH /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch.pth iPSmini/iPSmini-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s377166022.170765
+e377166024.489051
+r1
+xProcessPCH
+x/var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch.pth
+xiPSmini/iPSmini-Prefix.pch
+xnormal
+xx86_64
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection37"Precompile iPSmini/iPSmini-Prefix.pch5ce72bc6187bb641^98317dc8187bb641^---0#0#0#-19%DVTDocumentLocation2@85"file://localhost/Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/iPSmini-Prefix.pch0000000000000000^3203"ProcessPCH /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch.pth iPSmini/iPSmini-Prefix.pch normal x86_64 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/harada/Desktop/2012_ips/src/iPSmini    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch x86_64 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wshorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.8 -g -fvisibility=hidden -Wno-sign-conversion "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-generated-files.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-own-target-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-all-target-headers.hmap -iquote /Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/iPSmini-project-headers.hmap -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources/x86_64 -I/Users/harada/Desktop/2012_ips/src/iPSmini/build/iPSmini.build/Release/iPSmini.build/DerivedSources -F/Users/harada/Desktop/2012_ips/src/iPSmini/build/Release --serialize-diagnostics /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch.dia -c /Users/harada/Desktop/2012_ips/src/iPSmini/iPSmini/iPSmini-Prefix.pch -o /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/xc/q_3zldwx0q779p5wbg6y1fbw0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/iPSmini-Prefix-dtzlkvozynhyupaoyeumhjouxngy/iPSmini-Prefix.pch.d36"1C47BCCE-625F-4692-B9F2-AA402D210F67-
+

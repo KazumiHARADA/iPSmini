@@ -1,6 +1,6 @@
 ;; -*- mode: scheme; coding: utf-8 -*-
 
-(define *version* "iPSmini 0.2.2")
+(define *version* "iPSmini 0.4.2")
 
 ;;map
 
@@ -25,6 +25,19 @@
      (cond
       ((= n 0) p1)
        (else (recur p2 (+ p1 p2) (- n 1)))))))
+       
+(define fibo2
+  (lambda (n)
+    (let l ((p1 0) (p2 1) (n n))
+     (cond
+      ((= n 0) p1)
+       (else (l p2 (+ p1 p2) (- n 1)))))))
+       
+(define fibo3 
+ (lambda (x)
+  (if (or (= 0 x) (= 1 x))
+      1
+      (+ (fibo3 (- x 1)) (fibo3 (- x 2))))))
 
 ;;not
 
@@ -60,7 +73,9 @@
 
 (define odd?
   (lambda (n)
-    (not (even? n))))
+    (cond
+     ((eq? (even? n) #t) #f)
+     (else #t))))
 
 ;;positive?
 
@@ -96,17 +111,27 @@
 (define caddr
   (lambda (x)
     (car (cdr (cdr (x))))))
-    
+     
 ;;filter
 
 (define filter
   (lambda (pred lst)
+   (loop ((pred pred) (lst lst) (ans '()))
     (cond
-     ((null? lst) (quote ()))
+     ((null? lst) ans)
      ((eq? (pred (car lst)) #t)
-      (cons (car lst) (filter pred (cdr lst))))
-     (else (filter pred (cdr lst))))))
+      (recur pred (cdr lst) (cons (car lst) ans)))
+     (else (recur pred (cdr lst) ans))))))
      
+(define filter
+  (lambda (pred lst)
+   (let l ((pred pred) (lst lst) (ans '()))
+    (cond
+     ((null? lst) (reverse ans))
+     ((eq? (pred (car lst)) #t)
+      (l pred (cdr lst) (cons (car lst) ans)))
+     (else (l pred (cdr lst) ans))))))
+
 ;;list
 
 (define list
@@ -122,6 +147,13 @@
 	  ((even? e) (recur (* b b) (/ e 2) ret))
 	  (else (recur b (- e 1) (* b ret)))))))
       
+(define power2
+  (lambda (b e)
+    (let loop ((b b) (e e) (ret 1))
+     (cond ((= 0 e) ret)
+	  ((even? e) (loop (* b b) (/ e 2) ret))
+	  (else (loop b (- e 1) (* b ret)))))))
+      
 (define z
  (lambda (n)
   (loop ((n n))
@@ -129,4 +161,192 @@
     ((= n 0) 0)
     (else (recur (- n 1)))))))
        
+
+(define factorial 
+ (lambda (n)
+  (loop ((n n) (rec 1))
+  (if (= n 0) rec
+    (recur (- n 1) (* rec n))))))
+    
+(define <=
+ (lambda (n m)
+  (cond
+   ((< n m) #t)
+   ((= n m) #t)
+   (else #f))))
+   
+   
+(define member?
+ (lambda (a lat)
+  (cond
+   ((null? lat) '())
+   (else (or (eq? (car lat) a) (member? a (cdr lat)))))))
+   
+   
+(define rember
+ (lambda (a lat)
+  (cond
+   ((null? lat) '())
+   ((eq? (car lat) a) (cdr lat))
+   (else (cons (car lat) (rember a (cdr lat)))))))
+   
+   
+(define insertR
+ (lambda (new old lat)
+  (cond
+   ((null? lat) '())
+   (else (cond
+           ((eq? (car lat) old)
+            (cons new (cdr lat)))
+         (else (cons (car lat) (insertR new old (cdr lat)))))))))
+         
+(define subst
+ (lambda (new old lat)
+  (cond
+   ((null? lat) '())
+   (else (cond
+          ((eq? (car lat) old)
+            (cons new (cdr lat)))
+           (else (cons (car lat) (subst new old (cdr lat)))))))))
+           
+(define multisubst
+ (lambda (new old lat)
+  (cond
+   ((null? lat) '())
+   (else (cond
+    ((eq? (car lat) old)
+    (cons new (multisubst new old (cdr lat))))
+    (else (cons (car lat) (multisubst new old (cdr lat)))))))))
+    
+(define add1
+ (lambda (n)
+  (+ n 1)))
+  
+(define sub1
+ (lambda (n)
+  (- n 1)))
+  
+  
+(define pick
+ (lambda (n lat)
+  (cond
+   ((zero? (sub1 n)) (car lat))
+   (else (pick (sub1 n) (cdr lat))))))
+   
+(define no-nums
+ (lambda (lat)
+  (cond
+   ((null? lat) '())
+   (else (cond
+    ((number? (car lat))
+     (no-nums (cdr lat)))
+     (else (cons (car lat) (no-nums (cdr lat)))))))))
+     
+     
+(define rember*
+ (lambda (a l)
+  (cond
+   ((null? l) '())
+   ((atom? (car l))
+    (cond
+     ((eq? (car l) a)
+      (rember* a (cdr l)))
+     (else (cons (car l) (rember* a (cdr l))))))
+    (else (cons (rember* a (car l)) (rember* a (cdr l)))))))
+    
+(define eqan?
+ (lambda (a1 a2)
+  (cond
+   ((and (number? a1) (number? a2))
+    (= a1 a2))
+   ((or (number? a1) (number? a2)) #f)
+   (else (eq? a1 a2)))))
+   
+(define eqlist?
+ (lambda (l1 l2)
+  (cond
+   ((and (null? l1) (null? l2)) #t)
+   ((or (null? l1) (null? l2)) #f)
+   ((and (atom? (car l1))
+    (atom? (car l2)))
+    (and (eqan? (car l1) (car l2))
+     (eqlist? (cdr l1) (cdr l2))))
+   ((or (atom? (car l1)) (atom? (car l2))) #f)
+   (else (and (eqlist? (car l1) (car l2))
+           (eqlist? (cdr l1) (cdr l2)))))))
+           
+(define equal?
+ (lambda (s1 s2)
+  (cond
+   ((and (atom? s1) (atom? s2))
+    (eqan? s1 s2))
+   ((atom? s1) #f)
+   ((atom? s2) #f)
+   (else (eqlist s1 s2)))))
+   
+(define numbered?
+ (lambda (aexp)
+  (cond
+   ((atom? aexp) (number? aexp))
+   ((eq? (car (cdr aexp)) '+)
+    (and (numbered? (car aexp))
+         (numbered? (car (cdr (cdr aexp))))))
+   ((eq? (car (cdr aexp)) '*)
+    (and (numbered? (car aexp))
+         (numbered? (car (cdr (cdr aexp))))))
+   ((eq? (car (cdr aexp)) '^)
+    (and (numbered? (car aexp))
+         (numbered? (car (cdr (cdr aexp)))))))))
+   
+(define makeset
+ (lambda (lat)
+  (cond
+   ((null? lat) '())
+   ((member? (car lat) (cdr lat))
+    (makeset (cdr lat)))
+   (else (cons (car lat) (makeset (cdr lat)))))))
+   
+   
+(define rember-f
+ (lambda (test? a l)
+  (cond
+   ((null? l) '())
+   ((test? (car l) a) (cdr l))
+   (else (cons (car l) (rember-f test? a (cdr l)))))))
+   
+(define multi
+ (lambda (new oldL oldR lat col)
+  (cond
+   ((null? lat) (col '() 0 0))
+   ((eq? (car lat) oldL) (multi new oldL oldR (cdr lat) (lambda (newlat L R) (col (cons new (cons oldL newlat)) (add1 L) R))))
+   ((eq? (car lat) oldR) (multi new oldL oldR (cdr lat) (lambda (newlat L R) (col (cons new (cons oldR newlat)) L (add1 R)))))
+   (else multi new oldL oldR (cdr lat) (lambda (newlat L R) (col (cons (car lat) newlat) L R))))))
+   
+(define the-last-friend
+ (lambda (newl product sum)
+  (cons sum (cons product newl))))
+  
+(define eternity
+ (lambda (x)
+  (eternity x)))
+  
+(define multirember
+ (lambda (a lat)
+  (letrec
+      ((mr (lambda (lat)
+       (cond
+        ((null? lat) '())
+        ((eq? a (car lat))
+         (mr (cdr lat)))
+        (else
+         (cons (car lat)
+         (mr (cdr lat))))))))
+    (mr lat))))
+    
+(define ack 
+ (lambda (m n)
+  (cond 
+   ((= m 0) (+ n 1))
+   ((= n 0) (ack (- m 1) 1))
+   (else  (ack (- m 1) (ack m (- n 1)))))))
 

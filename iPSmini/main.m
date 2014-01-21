@@ -10,7 +10,7 @@
 #import "Load.h"
 #import "IPS.h"
 
-NSString *path = @"/Users/harada/Desktop/iPSmini/iPSmini/init.ips";
+NSString *path = @"./init.ips";
 
 int main(int argc,char *argv[]){
     @autoreleasepool {

@@ -33,12 +33,17 @@
 @synthesize global_table;
 @synthesize local_table;
 @synthesize initial_value;
+@synthesize loop_table;
+
+int loop_flag = 0;
 
 -(void) eval:(id)str
 {
     NSArray *toked = [self scan:str];
     id parsed = [self parse:toked];
     self.initial_value = parsed;
+    
+  //  printf("size:%ld\n",sizeof(double));
     
     [self print:[self meaning:self.initial_value :self.global_table]];
     
@@ -90,6 +95,8 @@
         return e;
     } else if (isString(e)) {
         return e;
+    } else if (isInternalChar(e)) {
+        return e;
     } else if ([e isEqual:@"#t"]) {
         return @"#t";
     } else if ([e isEqual:@"#f"]) {
@@ -107,6 +114,7 @@
 -(id) identifier:(id) e:(NSMutableArray *)table
 {
     id ans = [self lookupInTable:e :table];
+    //NSLog(@"%@",table);
     
     if ([ans isEqual:@"#f"]) {
         [IPS identifierError:e];
@@ -121,6 +129,7 @@
 
 -(id) lambda:(id)e :(NSMutableArray *)table//(non-primitive (table args body))
 {
+    //NSLog(@"%@",table);
     NSMutableArray *tmp = [[NSMutableArray initCell] addR:table];
     
     [tmp addFromCell:cdr(e)];
@@ -141,6 +150,7 @@
 {
     NSMutableArray *tmp_table = [NSMutableArray arrayWithCapacity:0];
     
+    loop_flag = 1;
     id params = letParametersOf(e);
     id args = [self letArgumentsOf:e :table];
     id body = letBodyOf(e);
@@ -152,18 +162,24 @@
     }
     [self define:define_entry :tmp_table];
     id result = [self apply:[self meaning:name :tmp_table] :args :tmp_table];
-    
+    loop_flag = 0;
     return result;
 }
 
 -(id) evlet:(id)e :(id)table
 {
+    //NSLog(@"%lu",[table count]);
+    //NSLog(@"%@",table);
+    //loop_flag = 1;
     id params = letParametersOf(e);
     id args = [self letArgumentsOf:e :table];
     id body = letBodyOf(e);
     id lambda_entry = setLambdaEntry(params,body);
     id closure_recode = [self lambda:lambda_entry :table];
     id result = [self applyClosure:car(cdr(closure_recode)) :args :table];
+    //loop_flag = 0;
+    //NSLog(@"%@",table);
+ //NSLog(@"%lu",[table count]);
     return result;
 }
 
@@ -181,6 +197,7 @@
 
 -(id) letrec:(id)e :(id)table
 {
+    loop_flag = 1;
     id define_entrys = letrecDefineEntry(car(cdr(e)));
     NSMutableArray *tmp_table = [NSMutableArray arrayWithCapacity:0];
     
@@ -190,8 +207,10 @@
         tmp_table = [table mutableCopy];
     }
     [self allDefine:define_entrys :tmp_table];
-    return [self meaning:letrecMeaningEntry(e) :tmp_table];
-    
+   
+    id result = [self meaning:letrecMeaningEntry(e) :tmp_table];
+    loop_flag = 0;
+    return result;
 }
 
 -(void) allDefine:(id)entrys :(id)table
@@ -201,6 +220,15 @@
         [entrys[pos] removeObjectAtIndex:0];
     }];
 }
+
+-(void) allDefineForLoop:(id)entrys :(id)table
+{
+    [entrys forEachValues:^void(int pos){
+        [self defineForLoop:entrys[pos] :table];
+        [entrys[pos] removeObjectAtIndex:0];
+    }];
+}
+
 
 -(id) and:(id)e :(id)table
 {
@@ -287,6 +315,45 @@
 
 -(id) loop:(id)e :(NSMutableArray *)table
 {
+    /*
+    NSMutableArray *params = letParametersOf(e);
+    NSMutableArray *body = letBodyOf(e);
+    NSMutableArray *tmp_table = [NSMutableArray arrayWithCapacity:0];
+    
+    
+    if ([table isEqual:self.global_table]){
+        tmp_table = [self.global_table mutableCopy];
+    } else {
+        tmp_table = [table mutableCopy];
+    }
+    
+    //self.loop_table = [self.global_table mutableCopy];
+    NSLog(@"%lu",[self.loop_table count]);
+    NSLog(@"%@",loopDefineEntry(second(e)));
+    [self allDefineForLoop:loopDefineEntry(second(e)) :tmp_table];
+    
+   // NSLog(@"%@",self.loop_table);
+    
+    id result;
+    while (1){
+        @autoreleasepool {
+        NSMutableArray *args = [self loopArgumentsOf:params :self.loop_table];
+        NSMutableArray *closure_recode = [self lambda:setLambdaEntry(params, body) :self.loop_table];
+            result = [self applyClosure:car(cdr(closure_recode)) :args :self.loop_table];
+        
+        if (![result isKindOfClass:[NSString class]] && [result[0] isKindOfClass:[NSMapTable class]]) {
+            tmp_table = result;
+            continue;
+        } else {
+            break;
+        }
+        }
+        
+    }
+    
+    return result;
+    */
+    
     NSMutableArray *params = letParametersOf(e);
     NSMutableArray *body = letBodyOf(e);
     NSMutableArray *tmp_table = [NSMutableArray arrayWithCapacity:0];
@@ -297,22 +364,24 @@
         tmp_table = [table mutableCopy];
     }
     
+    loop_flag = 1;
     [self allDefine:loopDefineEntry(second(e)) :tmp_table];
     
     id result;
     while (1){
-        
-        NSMutableArray *args = [self loopArgumentsOf:params :tmp_table];
-        NSMutableArray *closure_recode = [self lambda:setLambdaEntry(params, body) :tmp_table];
-        result = [self applyClosure:car(cdr(closure_recode)) :args :tmp_table];
-        
-        if (![result isKindOfClass:[NSString class]] && [result[0] isKindOfClass:[NSMapTable class]]) {
-            tmp_table = result;
-            continue;
-        } else {
-            break;
+        @autoreleasepool {
+            NSMutableArray *args = [self loopArgumentsOf:params :tmp_table];
+            NSMutableArray *closure_recode = [self lambda:setLambdaEntry(params, body) :tmp_table];
+            result = [self applyClosure:car(cdr(closure_recode)) :args :tmp_table];
+            
+            if (![result isKindOfClass:[NSString class]] && [result[0] isKindOfClass:[NSMapTable class]]) {
+                tmp_table = result;
+                continue;
+            } else {
+                loop_flag = 0;
+                break;
+            }
         }
-        
     }
     
     return result;
@@ -320,7 +389,7 @@
 
 -(id) recur:(id)e :(NSMutableArray *)table
 {
-    id loop_keys = [self lookupInTable:@"loop_keys" :table];
+    /*id loop_keys = [self lookupInTable:@"loop_keys" :self.loop_table];
     
     NSMutableArray *tmp_table = [NSMutableArray arrayWithCapacity:0];
    
@@ -334,14 +403,38 @@
         [tmp removeObjectAtIndex:0];
         
         [tmp forEachValues:^void(int pos) {
-            NSMapTable *entry = [NSMapTable weakToWeakObjectsMapTable];
+            NSMapTable *entry = [NSMapTable strongToStrongObjectsMapTable];
+            [entry setObject:[self meaning:tmp[pos] :self.loop_table] forKey:loop_keys[pos]];
+            [tmp_table push:entry];
+        }];
+    }
+    [self.loop_table removeObjectsInRange:NSMakeRange(0,[loop_keys count])];
+    [self.loop_table addObjectsFromArray:tmp_table];
+
+    return tmp_table;
+    */
+    id loop_keys = [self lookupInTable:@"loop_keys" :table];
+    
+    NSMutableArray *tmp_table = [NSMutableArray arrayWithCapacity:0];
+    
+    if ([loop_keys isEqual:@"#f"]) { //recur only
+        
+        [IPS error:@"#f" :10];
+        
+    } else { //loop~recur
+        
+        NSMutableArray *tmp = [e mutableCopy];
+        [tmp removeObjectAtIndex:0];
+        
+        [tmp forEachValues:^void(int pos) {
+            NSMapTable *entry = [NSMapTable strongToStrongObjectsMapTable];
             [entry setObject:[self meaning:tmp[pos] :table] forKey:loop_keys[pos]];
             [tmp_table push:entry];
         }];
     }
     [table removeObjectsInRange:NSMakeRange(0,[loop_keys count])];
     [tmp_table addObjectsFromArray:table];
-
+    
     return tmp_table;
 }
 
@@ -363,6 +456,22 @@
     return tmp_name;
     
 }
+
+-(id) defineForLoop:(id)e :(NSMutableArray *)table
+{
+    NSMapTable *entry = [NSMapTable strongToStrongObjectsMapTable];
+    id tmp_value = [e objectAtIndex:2];
+    id tmp_name = [e objectAtIndex:1];
+    
+    //tmp_value = [self meaning:tmp_value :[self nullTable]];//nullで渡していい。
+    tmp_value = [self meaning:tmp_value :table];
+    [entry setObject:tmp_value forKey:tmp_name];
+    [self.loop_table insertObject:entry atIndex:0];//tableに書くように変えた。
+    //NSLog(@"%@",self.loop_table);
+    return tmp_name;
+    
+}
+
 
 -(id) apply:(id)fun :(id)vals :(id)table
 {
@@ -401,6 +510,11 @@
 -(id) applyClosure:(id)closure :(id)vals :(id)table
 {
     id result;
+    
+    if (loop_flag == 1) {
+        return [self applyClosureForLoopAux:closure :vals :table :setMeaningEntrys(closure) :result];
+    }
+    
     return [self applyClosureAux:closure :vals :table :setMeaningEntrys(closure) :result];
 }
 
@@ -409,10 +523,52 @@
     if ([meaning_entrys[0] isEqual:[NSNull null]]) {
         return result;
     }
-    self.local_table = extendTable(newEntry(second(closure), vals), table);
+     //NSLog(@"%@",first(closure));
+    self.local_table = extendTable(newEntry(second(closure), vals),self.global_table);//仮引数と実引数の拡張
+    
+    if ([first(closure) count] != 1) {
+        
+        NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:0];
+        NSMutableArray *entry = [first(closure) mutableCopy];
+        [self.local_table removeLastObject];
+        [tmp addObjectsFromArray:self.local_table];
+        [tmp addObjectsFromArray:entry];
+        self.local_table = tmp;
+    }
+    /*
+    NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray *entry = [first(closure) mutableCopy];
+    [entry removeLastObject];
+    [tmp addObjectsFromArray:entry];
+    [tmp addObjectsFromArray:self.local_table];
+    self.local_table = tmp;
+    */
+    
+    //NSLog(@"%@",closure);
+    //NSLog(@"%@",self.local_table);
     result = [self meaning:meaning_entrys[0] :self.local_table];
     
     return [self applyClosureAux:closure :vals :self.local_table :cdr(meaning_entrys) :result];
+}
+
+//fixme
+/*
+-(id) applyClosureForLoop:(id)closure :(id)vals :(id)table
+{
+    id result;
+    return [self applyClosureAux:closure :vals :table :setMeaningEntrys(closure) :result];
+}*/
+
+-(id) applyClosureForLoopAux:(id)closure :(id)vals :(id)table :(id)meaning_entrys :(id)result
+{
+    if ([meaning_entrys[0] isEqual:[NSNull null]]) {
+        return result;
+    }
+    self.local_table = extendTable(newEntry(second(closure), vals),table);
+    //NSLog(@"local-%@",self.local_table);
+    result = [self meaning:meaning_entrys[0] :self.local_table];
+    
+    return [self applyClosureForLoopAux:closure :vals :self.local_table :cdr(meaning_entrys) :result];
 }
 
 
@@ -458,6 +614,8 @@
     if (isNumber(e)) {
         return CONST;
     } else if (isString(e)) {
+        return CONST;
+    } else if (isInternalChar(e)) {
         return CONST;
     } else if (isSubr(e)) {
         return CONST;
@@ -518,7 +676,7 @@ BOOL isBasicSubr(id e)
 {
     NSArray *basic_subr =[[NSArray alloc] initWithObjects:@"#t",@"#f",@"+",
                           @"-",@"*",@"/",@"=",@"car",@"cdr",@"null?",@"eq?",
-                          @"cons",@"div",@"mod",@">",@"<",@"apply", nil];
+                          @"cons",@"div",@"mod",@">",@"<",@"apply",@"number?", nil];
     return [basic_subr containsObject:e];
 }
 
@@ -530,12 +688,33 @@ BOOL isAddSubr(id e)
     return [add_subr containsObject:e];
 }
 
+BOOL isStringSubr(id e)
+{
+    NSArray *add_subr =[[NSArray alloc] initWithObjects:@"string?",@"make-string",
+                        @"string-ref",@"substring",@"string-append",
+                        @"string=?",@"string<?",@"string>?",@"string-length",@"print",nil];
+    return [add_subr containsObject:e];
+}
+
+BOOL isCharSubr(id e)
+{
+    NSArray *add_subr =[[NSArray alloc] initWithObjects:@"char?",@"char=?",
+                        @"char>?",@"char<?",@"char->integer",
+                        @"integer->char",nil];
+    return [add_subr containsObject:e];
+}
+
+
 int isSubr(id e)
 {
     if (isBasicSubr(e)) {
         return 1;
     } else if (isAddSubr(e)) {
         return 2;
+    } else if (isStringSubr(e)) {
+        return 3;
+    } else if (isCharSubr(e)) {
+        return 4;
     }
     return FALSE;
 }
@@ -561,6 +740,17 @@ BOOL isString(id e)
 {
     return isMatch(e,@"^\"(.|\n)*\"$");
 }
+
+BOOL isInternalChar(id e)
+{
+    return isMatch(e,@"#\\\\.$");
+}
+
+BOOL isPreChar(id e)
+{
+    return isMatch(e,@"^#¥.$");
+}
+
 
 id car(id e)
 {
@@ -808,7 +998,12 @@ NSString * replace(NSString *str, NSString *before, NSString *after)
         NSTextCheckingResult *match = [regexp2 firstMatchInString:str options:0 range:NSMakeRange(0, str.length)];
         NSString *match_string = [str substringWithRange:[match rangeAtIndex:0]];
         [result addObjectsFromArray:scanAux(match_string)];
-        str = [str stringByReplacingOccurrencesOfString:match_string withString:@""];
+        NSUInteger str_len = [match_string length];
+        str = [str stringByReplacingOccurrencesOfString:match_string
+                                             withString:@""
+                                                options:0
+                                                  range:NSMakeRange(0,str_len)
+               ];
     }
     [result addObject:[NSNull null]];
     return result;
@@ -946,6 +1141,10 @@ id tidyParsed(id parse_result)
     NSMutableArray *result = [NSMutableArray initCell];
     
     if ([parse_result isKindOfClass:[NSString class]] == TRUE){
+        if (isPreChar(parse_result)){
+            NSString *str = replace(parse_result, @"¥", @"\\");
+            return str;
+        }
         return parse_result;
     }
     
@@ -959,6 +1158,11 @@ id tidyParsed(id parse_result)
             [arr addAll:@"quote",parse_result[++tmp_pos],nil];
             [result add:arr];
             arr = [NSMutableArray initCell];
+            
+        } else if (isPreChar(parse_result[tmp_pos])){
+            
+            NSString *str = replace(parse_result[tmp_pos], @"¥", @"\\");
+            [result add:str];
             
         } else {
             [result add:parse_result[tmp_pos]];
